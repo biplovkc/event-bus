@@ -1,13 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <PackageId>Biplov.EventBus</PackageId>
-	  <AssemblyName>Biplov.EventBus</AssemblyName>
-	  <RootNameSpace>Biplov.EventBus</RootNameSpace>
-	  <TargetFramework>net6.0</TargetFramework>
-	  <Description>High level event bus project. This can be used by service specific event bus projects like RabbitMQ, Azure service bus, etc.</Description>
-	  <LangVersion>latest</LangVersion>
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  	<Authors>Biplov KC</Authors>
+	<OutputType>Library</OutputType>
+	<Title>Event Bus</Title>
+	<PackageId>Biplov.EventBus</PackageId>
+	<PackageProjectUrl>https://github.com/biplovkc/event-bus</PackageProjectUrl>
+	<PackageTags>Biplov;BiplovKC;MessageBroker;EventBus</PackageTags>
+	<AssemblyName>Biplov.EventBus</AssemblyName>
+	<RootNameSpace>Biplov.EventBus</RootNameSpace>
+	<TargetFramework>net6.0</TargetFramework>
+	<Description>High level event bus project. This can be used by service specific event bus projects like RabbitMQ, Azure service bus, etc.</Description>
+	<LangVersion>latest</LangVersion>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.Github" Version="1.1.1" PrivateAsserts="all" />
+  </ItemGroup>
 </Project>

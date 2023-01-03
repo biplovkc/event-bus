@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <Owners>Biplov KC </Owners>
+    <Owners>Biplov KC</Owners>
     <RepositoryUrl>https://github.com/biplovkc/event-bus</RepositoryUrl>
     <PackageProjectUrl>https://github.com/biplovkc/event-bus</PackageProjectUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
