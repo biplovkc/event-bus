@@ -1,18 +1,23 @@
 ﻿namespace Biplov.EventBus.Events;
 
-public class IntegrationEvent
+public record IntegrationEvent
 {
     public IntegrationEvent()
     {
-        Id = Guid.NewGuid();
+        Id = Guid.NewGuid().ToString("N");
         CreationDate = DateTime.UtcNow;
     }
 
-    public IntegrationEvent(Guid id, DateTime creationDate)
+    public IntegrationEvent(string id, DateTime creationDate)
     {
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            id = Guid.NewGuid().ToString("N");
+        }
+
         Id = id;
         CreationDate = creationDate;
     }
-    public Guid Id { get; private set; }
+    public string Id { get; private set; }
     public DateTime CreationDate { get; private set; }
 }
