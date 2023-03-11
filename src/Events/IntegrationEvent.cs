@@ -1,23 +1,27 @@
-﻿namespace Biplov.EventBus.Events;
+namespace Biplov.DDD.Essentials;
 
 public record IntegrationEvent
-{
+{  
+    [JsonConstructor]
     public IntegrationEvent()
     {
-        Id = Guid.NewGuid().ToString("N");
+        Id = $"iev_{Guid.NewGuid():N}";
         CreationDate = DateTime.UtcNow;
     }
 
-    public IntegrationEvent(string id, DateTime creationDate)
+    [JsonConstructor]
+    public IntegrationEvent(string id, DateTime createDate)
     {
         if (string.IsNullOrWhiteSpace(id))
-        {
-            id = Guid.NewGuid().ToString("N");
-        }
-
+            throw new ArgumentNullException(nameof(id));
+            
         Id = id;
-        CreationDate = creationDate;
+        CreationDate = createDate;
     }
-    public string Id { get; private set; }
-    public DateTime CreationDate { get; private set; }
+
+    [JsonInclude]
+    public string Id { get; private init; }
+
+    [JsonInclude]
+    public DateTime CreationDate { get; private init; }
 }
