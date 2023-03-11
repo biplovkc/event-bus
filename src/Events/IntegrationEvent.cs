@@ -1,4 +1,4 @@
-namespace Biplov.DDD.Essentials;
+namespace Biplov.EventBus.Events;
 
 public record IntegrationEvent
 {  
