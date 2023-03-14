@@ -10,13 +10,11 @@ public record IntegrationEvent
     /// Initializes a new instance of the <see cref="IntegrationEvent"/> class
     /// with the specified identifier and creation date.
     /// </summary>
-    /// <param name="id">The identifier for the integration event. If null or whitespace, a new identifier will be generated.</param>
-    /// <param name="createdDate">The creation date for the integration event. If default(DateTime), the current UTC date and time will be used.</param>
-    public IntegrationEvent(string id = null, DateTime createdDate = default)
+    public IntegrationEvent()
     {
-        Id = string.IsNullOrWhiteSpace(id) ? $"iev_{Guid.NewGuid():N}" : id;
+        Id = $"iev_{Guid.NewGuid():N}";
 
-        CreationDate = createdDate == default ? DateTime.UtcNow : createdDate;
+        CreationDate = DateTime.UtcNow;
     }
 
     /// <summary>
