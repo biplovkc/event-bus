@@ -1,27 +1,35 @@
 namespace Biplov.EventBus.Events;
 
+/// <summary>
+/// Represents an integration event with an identifier and creation timestamp,
+/// which can be serialized and deserialized to/from JSON.
+/// </summary>
 public record IntegrationEvent
-{  
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IntegrationEvent"/> class
+    /// with the specified identifier and creation date.
+    /// </summary>
+    /// <param name="id">The identifier for the integration event. If null or whitespace, a new identifier will be generated.</param>
+    /// <param name="createdDate">The creation date for the integration event. If default(DateTime), the current UTC date and time will be used.</param>
     [JsonConstructor]
-    public IntegrationEvent()
+    public IntegrationEvent(string id = null, DateTime createdDate = default)
     {
-        Id = $"iev_{Guid.NewGuid():N}";
-        CreationDate = DateTime.UtcNow;
+        Id = string.IsNullOrWhiteSpace(id) ? $"iev_{Guid.NewGuid():N}" : id;
+
+        CreationDate = createdDate == default ? DateTime.UtcNow : createdDate;
     }
 
-    [JsonConstructor]
-    public IntegrationEvent(string id, DateTime createDate)
-    {
-        if (string.IsNullOrWhiteSpace(id))
-            throw new ArgumentNullException(nameof(id));
-            
-        Id = id;
-        CreationDate = createDate;
-    }
-
+    /// <summary>
+    /// Gets the identifier for the integration event.
+    /// </summary>
     [JsonInclude]
     public string Id { get; private init; }
 
+    /// <summary>
+    /// Gets the creation date for the integration event.
+    /// </summary>
     [JsonInclude]
     public DateTime CreationDate { get; private init; }
 }
+
