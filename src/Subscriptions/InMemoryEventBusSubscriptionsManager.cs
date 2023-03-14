@@ -24,7 +24,7 @@ public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptio
 
     public void AddSubscription<T, TH>()
         where T : IntegrationEvent
-        where TH : IIntegrationEventHandler
+        where TH : IIntegrationEventHandler<T>
     {
         var eventName = GetEventKey<T>();
 
@@ -69,7 +69,7 @@ public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptio
 
 
     public void RemoveSubscription<T, TH>()
-        where TH : IIntegrationEventHandler
+        where TH : IIntegrationEventHandler<T>
         where T : IntegrationEvent
     {
         var handlerToRemove = FindSubscriptionToRemove<T, TH>();
@@ -93,7 +93,6 @@ public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptio
                 }
                 RaiseOnEventRemoved(eventName);
             }
-
         }
     }
 
@@ -120,7 +119,7 @@ public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptio
 
     private SubscriptionInfo FindSubscriptionToRemove<T, TH>()
         where T : IntegrationEvent
-        where TH : IIntegrationEventHandler
+        where TH : IIntegrationEventHandler<T>
     {
         var eventName = GetEventKey<T>();
         return DoFindSubscriptionToRemove(eventName, typeof(TH));

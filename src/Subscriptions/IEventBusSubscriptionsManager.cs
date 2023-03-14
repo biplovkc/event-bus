@@ -9,10 +9,10 @@ public interface IEventBusSubscriptionsManager
 
     void AddSubscription<T, TH>()
         where T : IntegrationEvent
-        where TH : IIntegrationEventHandler;
+        where TH : IIntegrationEventHandler<T>;
 
     void RemoveSubscription<T, TH>()
-        where TH : IIntegrationEventHandler
+        where TH : IIntegrationEventHandler<T>
         where T : IntegrationEvent;
     void RemoveDynamicSubscription<TH>(string eventName)
         where TH : IDynamicIntegrationEventHandler;
