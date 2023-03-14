@@ -12,7 +12,6 @@ public record IntegrationEvent
     /// </summary>
     /// <param name="id">The identifier for the integration event. If null or whitespace, a new identifier will be generated.</param>
     /// <param name="createdDate">The creation date for the integration event. If default(DateTime), the current UTC date and time will be used.</param>
-    [JsonConstructor]
     public IntegrationEvent(string id = null, DateTime createdDate = default)
     {
         Id = string.IsNullOrWhiteSpace(id) ? $"iev_{Guid.NewGuid():N}" : id;
@@ -23,13 +22,11 @@ public record IntegrationEvent
     /// <summary>
     /// Gets the identifier for the integration event.
     /// </summary>
-    [JsonInclude]
     public string Id { get; private init; }
 
     /// <summary>
     /// Gets the creation date for the integration event.
     /// </summary>
-    [JsonInclude]
     public DateTime CreationDate { get; private init; }
 }
 
