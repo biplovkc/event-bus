@@ -10,11 +10,20 @@ public record IntegrationEvent
     /// Initializes a new instance of the <see cref="IntegrationEvent"/> class
     /// with the specified identifier and creation date.
     /// </summary>
-    public IntegrationEvent()
+    [JsonConstructor]
+    public IntegrationEvent(string id, DateTime creationDate)
     {
-        Id = $"iev_{Guid.NewGuid():N}";
+        Id = string.IsNullOrEmpty(id)? $"iev_{Guid.NewGuid():N}" : id;
 
-        CreationDate = DateTime.UtcNow;
+        CreationDate = creationDate == default ? DateTime.UtcNow : creationDate;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IntegrationEvent"/> class
+    /// with a generated identifier and the current UTC date.
+    /// </summary>
+    public IntegrationEvent() : this($"iev_{Guid.NewGuid():N}", DateTime.UtcNow)
+    {
     }
 
     /// <summary>
@@ -27,4 +36,3 @@ public record IntegrationEvent
     /// </summary>
     public DateTime CreationDate { get; private init; }
 }
-
